@@ -1,0 +1,31 @@
+﻿@using MVC.Models
+@model List<ClasseVM>
+@{
+    ViewBag.Title = "ClasseList";
+}
+
+
+    <table class="table">
+        @Html.ActionLink("Créer une classe", "Add", "Classe", null, new { @class = "btn btn-success" })
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom de l'établissement</th>
+                <th scope="col">Niveau</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var classe in Model)
+            {
+                <tr>
+                    <th scope="row">@classe.Id</th>
+                    <td>@classe.NomEtablissement</td>
+                    <td>@classe.Niveau</td>
+                    <td>
+                        @Html.ActionLink("Détails", "EleveClasse", "Classe", new { id = classe.Id }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

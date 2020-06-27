@@ -1,0 +1,31 @@
+﻿<Window x:Class="WPFApp.Views.AddNote"
+        x:Name="AddNoteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApp.Views"
+        mc:Ignorable="d"
+        Title="AddNote" Height="200" Width="400">
+    <Grid>
+        <DockPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                <Label Content="Matière"/>
+                <Label Content="Note"/>
+                <Label Content="Appréciation"/>
+                <Label Content="Date de la note"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+                <TextBox Width="300" HorizontalAlignment="Left" Text="{Binding Matiere}" Margin="4"/>
+                <TextBox Width="300" HorizontalAlignment="Left" Text="{Binding Valeur}" Margin="4"/>
+                <TextBox Width="300" HorizontalAlignment="Left" Text="{Binding Appreciation}" Margin="4"/>
+                <DatePicker Width="300" HorizontalAlignment="Left" DisplayDate="{Binding DateNote, StringFormat='dd/MM/yyyy', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" SelectedDate="{Binding DateNote, StringFormat='dd/MM/yyyy', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></DatePicker>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Command="{Binding CloseWindow}">Retour</Button>
+                    <Button Command="{Binding AddNoteOperation}">Valider</Button>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

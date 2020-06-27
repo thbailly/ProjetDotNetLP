@@ -1,0 +1,99 @@
+﻿@using MVC.Models
+@model EleveVM
+@{
+    ViewBag.Title = "Detail";
+}
+
+    <div>
+        <div style="display: flex; justify-content: center">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Id: @Model.Id</div>
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Nom @Model.Prenom</h5>
+                    <p class="card-text">@Model.DateDeNaissance</p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="notes-etudiant" role="tabpanel">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Matière</th>
+                        <th scope="col">Valeur</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Appréciation</th>
+                        <th scope="col">Détail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+
+        </div>
+        <div id="notes-etudiant" role="tabpanel">
+            @Html.ActionLink("Ajouter une note", "Add", "Note", new { EleveId = @Model.Id }, new { @class = "btn btn-success" })
+            <p>Moyenne : <b>@Model.Moyenne</b></p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Matière</th>
+                        <th scope="col">Valeur</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Appréciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var note in Model.Notes)
+                    {
+                        <tr>
+                            <th scope="row">@note.Id</th>
+                            <td>@note.Matiere</td>
+                            <td>@note.Valeur</td>
+                            <td>@note.DateNote</td>
+                            <td>@note.Appreciation</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (Model.Notes.Count() == 0)
+            {
+                <div class="alert alert-danger" role="alert">
+                    Pas de notes
+                </div>
+            }
+        </div>
+        <div id="absences-etudiant" role="tabpanel">
+            @Html.ActionLink("Ajouter une absence", "Add", "Absence", new { EleveId = @Model.Id }, new { @class = "btn btn-success" })
+            <p>Nombre d'absences : <b>@Model.Absences.Count()</b></p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Motif</th>
+                        <th scope="col">date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var absence in Model.Absences)
+                    {
+                        <tr>
+                            <th scope="row">@absence.Id</th>
+                            <td>@absence.Motif</td>
+                            <td>@absence.DateAbsence</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (Model.Absences.Count() == 0)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <p>Pas d'absences</p>
+                </div>
+            }
+        </div>
+    </div>   

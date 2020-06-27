@@ -1,0 +1,53 @@
+﻿@using MVC.Models
+@model HomeVM
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Gestion des étudiants</h1>
+
+<h2>Top moyennes</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Moyenne</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var e in Model.BestEleves)
+        {
+            <tr>
+                <th scope="row">@e.Id</th>
+                <td>@e.Nom</td>
+                <td>@e.Prenom</td>
+                <td>@e.Moyenne</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Les 5 dernières absences</h2>
+<table class="table"class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Eleve Id</th>
+            <th scope="col">Motif</th>
+            <th scope="col">Date d'absence</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model.Absences)
+        {
+            <tr>
+                <th scope="row">@a.Id</th>
+                <td>@a.EleveId</td>
+                <td>@a.Motif</td>
+                <td>@a.DateAbsence</td>
+            </tr>
+        }
+    </tbody>
+</table>

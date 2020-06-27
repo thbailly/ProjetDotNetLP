@@ -1,0 +1,41 @@
+﻿@using MVC.Models
+@model List<EleveVM>
+
+
+
+    <table class="table">
+        @using (Html.BeginForm())
+        {
+            <div class="form-row mb-2">
+                @Html.TextBox("recherche", null, new { @class = "form-control", @placeholder = "Recherche"})
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </div>
+        }
+
+        <thead>
+            @Html.ActionLink("Ajouter un élève", "Add", "Eleve", null, new { @class = "btn btn-success" })
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Classe</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var eleve in Model)
+            {
+                <tr>
+                    <th scope="row">@eleve.Id</th>
+                    <td>@eleve.Nom</td>
+                    <td>@eleve.Prenom</td>
+                    <td>@eleve.DateDeNaissance</td>
+                    <td>@eleve.ClasseId</td>
+                    <td>
+                        @Html.ActionLink("Détails", "Detail", "Eleve", new { id = eleve.Id }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
